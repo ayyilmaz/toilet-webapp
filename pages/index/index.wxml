@@ -15,7 +15,7 @@
           {{item.name}}
           <view class="address">{{item.briefAddr}}</view>
         </view>
-        <view class="zan-cell__ft">步行{{item.distance}}米</view>
+        <view class="zan-cell__ft">相距{{item.distance}}米</view>
       </view>
     </view>
   </scroll-view>

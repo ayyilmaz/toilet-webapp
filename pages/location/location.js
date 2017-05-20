@@ -12,9 +12,8 @@ Page({
     distance: '',
     cost: '',
     polyline: [],
-    origin: '',
-    destination: '',
-    dialogFlag: 'dialog-hide'
+    origin: null,
+    destination: null
   },
   //页面加载事件
   onLoad: function (option) {
@@ -26,9 +25,7 @@ Page({
       //中心点位置
       latitude = param.latitude,
       longitude = param.longitude,
-      destination = param.destination,
-      name = param.name,
-      address = param.address;
+      destination = param.destination;
     var result = [];
     //数据组装
     list.forEach(function (item) {
@@ -46,23 +43,16 @@ Page({
       markers: result,
       latitude: latitude,
       longitude: longitude,
-      destination: destination,
-      name: name,
-      address: address,
     });
-    //判断用户点击的是撒点还是列表
-    if (destination) {
-      that.doWalkingRoute(destination);
-    }
+    //初始化路径规划
+    that.doWalkingRoute(destination);
   },
   //点击marker事件
   doMarkertap: function (obj) {
     var that = this;
+    //查询marker的详细信息
     var marker = that.getMarkerById(obj.markerId);
     that.doWalkingRoute(marker.longitude + "," + marker.latitude);
-    that.setData({
-      dialogFlag: 'dialog-show'
-    })
   },
   //进行路径规划
   doWalkingRoute: function (destination) {
@@ -71,6 +61,12 @@ Page({
     wx.getLocation({
       type: 'gcj02', //适用于微信的位置精度
       success: function (res) {
+        //设置详细路径需要的值
+        that.setData({
+          origin: res.longitude + "," + res.latitude,
+          destination: destination
+        });
+        //路径规划
         amapInstance.getWalkingRoute({
           origin: res.longitude + "," + res.latitude,
           destination: destination,
@@ -97,12 +93,12 @@ Page({
             });
             if (data.paths[0] && data.paths[0].distance) {
               that.setData({
-                distance: data.paths[0].distance + '米'
+                distance: data.paths[0].distance + ' 米'
               });
             }
             if (data.paths[0] && data.paths[0].duration) {
               that.setData({
-                cost: parseInt(data.paths[0].duration / 60) + '分钟'
+                cost: parseInt(data.paths[0].duration / 60) + ' 分钟'
               });
             }
           },
@@ -125,5 +121,17 @@ Page({
       }
     }
     return result;
+  },
+  //详细的路径规划
+  goDetail: function () {
+    var that = this;
+    //跳转传输的值
+    var param = {
+      origin: that.data.origin,
+      destination: that.data.destination,
+    }
+    wx.navigateTo({
+      url: '../location-detail/location?param=' + JSON.stringify(param)
+    })
   }
 })

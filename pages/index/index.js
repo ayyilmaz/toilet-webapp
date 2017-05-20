@@ -123,9 +123,7 @@ Page({
       longitude: that.data.longitude,
       list: that.data.list,
       //目的地点
-      destination: toilet.longitude + "," + toilet.latitude,
-      name: toilet.name,
-      address: toilet.address,
+      destination: toilet.longitude + "," + toilet.latitude
     }
     wx.navigateTo({
       url: '../location/location?param=' + JSON.stringify(param)
@@ -150,6 +148,7 @@ Page({
     wx.showLoading({ title: "数据更新中,别急!" });
     this.getData();
   },
+  //再次获取权限
   doAuth: function () {
     var that = this;
     wx.openSetting({
@@ -166,10 +165,8 @@ Page({
       latitude: that.data.latitude,
       longitude: that.data.longitude,
       list: that.data.list,
-      //目的地点
-      destination: 0,
-      name: '',
-      address: '',
+      //目的地点，默认获取最近一个点
+      destination: that.data.list[0]["longitude"] + "," + that.data.list[0]["latitude"]
     }
     wx.navigateTo({
       url: '../location/location?param=' + JSON.stringify(param)

@@ -1,4 +1,4 @@
-<view>
+<view class="main">
   <map id="map" 
       longitude="{{longitude}}" 
       latitude="{{latitude}}" 
@@ -8,4 +8,9 @@
       polyline="{{polyline}}"
       show-location>
   </map>
+  <view class="descript">
+    <view class="text">步行距离: {{distance}}</view>
+    <view class="text">步行时间: {{cost}}</view>
+    <view class="detail_button" bindtouchstart="goDetail">详情</view>
+  </view>
 </view>
