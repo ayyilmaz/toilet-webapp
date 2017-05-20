@@ -69,35 +69,33 @@
 
 /*页面刷新按钮*/
 
-.refresh image {
-  width: 70rpx;
-  height: 70rpx;
+.handle {
+  width: 80rpx;
+  height: auto;
   position: fixed;
-  bottom: 140rpx;
+  bottom: 60rpx;
   right: 50rpx;
+  z-index: 100;
 }
 
-/*地图上显示按钮*/
-.location image {
-  width: 70rpx;
-  height: 70rpx;
-  position: fixed;
-  bottom: 230rpx;
-  right: 50rpx;
-  background-color: #fff;
+.handle > .location{
+  width: 80rpx;
+  height: 80rpx;
 }
 
-/*关于按钮*/
-.about image {
-  width: 70rpx;
-  height: 70rpx;
-  position: fixed;
-  bottom: 50rpx;
-  right: 50rpx;
-  background-color: #fff;
+.handle > .refresh{
+  margin-top: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
 
-.refresh image:active {
+.handle > .about{
+  margin-top: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.handle > .refresh:active {
   transform: rotate(720deg);
   transition: all 1s ease;
 }
@@ -122,9 +120,9 @@
 }
 
 .no-data image {
-  height: 128px;
-  widows: 128px;
-  margin-top: 100px;
+  height: 128rpx;
+  widows: 128rpx;
+  margin-top: 100rpx;
 }
 
 /*没有连网*/
@@ -148,7 +146,7 @@
 }
 
 .error image {
-  height: 128px;
-  widows: 128px;
-  margin-top: 100px;
+  height: 128rpx;
+  widows: 128rpx;
+  margin-top: 100rpx;
 }

@@ -1,10 +1,11 @@
 <view>
-    <map id="map" 
-        longitude="{{longitude}}" 
-        latitude="{{latitude}}" 
-        scale="14" 
-        markers="{{markers}}" 
-        bindmarkertap="markertap" 
-        show-location>
-    </map>
+  <map id="map" 
+      longitude="{{longitude}}" 
+      latitude="{{latitude}}" 
+      scale="15" 
+      markers="{{markers}}" 
+      bindmarkertap="doMarkertap"
+      polyline="{{polyline}}"
+      show-location>
+  </map>
 </view>

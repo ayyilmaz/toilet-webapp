@@ -29,11 +29,13 @@ Page({
     qqmapsdk = new QQMapWX({
       key: '2EQBZ-3XM36-RUTSG-MIO6B-GXH4E-B3FC5'
     });
-    //查询附件的资源信息
+    //确保人员再次移动进行定位，获取经纬度
     wx.getLocation({
+      type: 'gcj02',
       success: function (res) {
         var latitude = res.latitude
         var longitude = res.longitude
+        console.log(res.accuracy);
         //设置经纬度值
         that.setData({
           latitude: latitude,
@@ -111,17 +113,23 @@ Page({
   },
   //点击列表显示本地导航信息
   tapItem: function (e) {
-    var id = e.currentTarget.dataset.id;
     var that = this;
+    var id = e.currentTarget.dataset.id;
     var toilet = that.findMarkerById(id);
-    //使用微信内置地图查看位置
-    wx.openLocation({
-      latitude: toilet.latitude,
-      longitude: toilet.longitude,
+    //跳转传输的值
+    var param = {
+      //基本的信息
+      latitude: that.data.latitude,
+      longitude: that.data.longitude,
+      list: that.data.list,
+      //目的地点
+      destination: toilet.longitude + "," + toilet.latitude,
       name: toilet.name,
       address: toilet.address,
-      scale: 14
-    });
+    }
+    wx.navigateTo({
+      url: '../location/location?param=' + JSON.stringify(param)
+    })
   },
   //根据marker唯一id查询信息
   findMarkerById: function (id) {
@@ -150,20 +158,24 @@ Page({
       }
     })
   },
-  // 设置界面跳转 跳转到关于界面
-  navToLocation: function () {
+  // 跳转到地图显示信息界面
+  doNavToLocation: function () {
     var that = this;
     //跳转传输的值
     var param = {
       latitude: that.data.latitude,
       longitude: that.data.longitude,
-      list: that.data.list
+      list: that.data.list,
+      //目的地点
+      destination: 0,
+      name: '',
+      address: '',
     }
     wx.navigateTo({
       url: '../location/location?param=' + JSON.stringify(param)
     })
   },
-  //关于按钮
+  // 关于按钮
   doAbout: function () {
 
   }

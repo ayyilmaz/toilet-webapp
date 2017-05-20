@@ -1,8 +1,39 @@
-view{
-    height: calc(100vh);
-    width: 100%;
+view {
+  height: calc(100vh);
+  width: 100%;
 }
-map{
-    height: calc(100vh);
-    width: 100%;
+
+map {
+  height: calc(100vh);
+  width: 100%;
+}
+
+.dialog {
+  display: flex;
+  position: fixed;
+  left: 0;
+  width: calc(100vw);
+  height: 280rpx;
+  background-color: #fff;
+  z-index: 2000;
+  -webkit-transform: all 1s ease;
+  -ms-transform: all 1s ease;
+  -moz-transform: all 1s ease;
+  transform: all 1s ease;
+}
+
+.dialog-show {
+  bottom: 0;
+  -webkit-transform: all 1s ease;
+  -ms-transform: all 1s ease;
+  -moz-transform: all 1s ease;
+  transform: all 1s ease;
+}
+
+.dialog-hide {
+  bottom: -280rpx;
+  -webkit-transform: all 1s ease;
+  -ms-transform: all 1s ease;
+  -moz-transform: all 1s ease;
+  transform: all 1s ease;
 }
