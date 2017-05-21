@@ -1,53 +1,66 @@
 /*容器区域*/
+
 .main {
   height: calc(100vh);
   width: 100%;
 }
 
 /*地图样式控制*/
+
 map {
-  height: calc(100vh - 120rpx);
+  height: calc(100vh - 160rpx);
   width: 100%;
 }
 
 /*底部详细信息控制*/
+
 .descript {
-  height: 120rpx;
+  height: 160rpx;
   width: 100%;
 }
 
 .descript {
+  display: flex;
   position: absolute;
-  height: 120rpx;
+  height: 160rpx;
   bottom: 0rpx;
   left: 0rpx;
   right: 0rpx;
 }
 
-.descript .text {
-  height: 38rpx;
-  margin-left: 30rpx;
-  font-size: 35rpx;
-  line-height: 38rpx;
-  margin-top: 6rpx;
+.descript .left {
+  flex: 1 0 0;
+  display: flex;
+  padding-left: 10rpx;
+  flex-direction: column;
 }
 
-.descript .text:first-child {
-  margin-top: 20rpx;
+.descript .right {
+  flex: 0 0 170rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.descript .left .name {
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 41rpx;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.descript .left .brief-addr {
+  height: 90rpx;
+  font-size: 34rpx;
+  display: flex;
+  align-items: center;
+}
+
 /*详细路径导航按钮*/
-.detail_button {
-  position: absolute;
-  bottom: 25rpx;
-  right: 38rpx;
-  padding: 6rpx 8rpx;
-  color: #fff;
-  background: #0091ff;
-  width: 130rpx;
-  text-align: center;
-  border-radius: 9rpx;
-}
 
-.detail_button:active{
-  background: #1283d8;
+.navigate {
+  width: 130rpx;
+  height: 130rpx;
 }

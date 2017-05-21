@@ -13,7 +13,10 @@ Page({
     cost: '',
     polyline: [],
     origin: null,
-    destination: null
+    destination: null,
+    briefAddr: null,
+    name: null,
+    navigateImag: "../../images/ios7-navigate.png"
   },
   //页面加载事件
   onLoad: function (option) {
@@ -25,17 +28,21 @@ Page({
       //中心点位置
       latitude = param.latitude,
       longitude = param.longitude,
-      destination = param.destination;
+      destination = param.destination,
+      briefAddr = param.briefAddr,
+      name = param.name;
     var result = [];
     //数据组装
     list.forEach(function (item) {
       result.push({
+        width: 40,
+        height: 40,
         iconPath: "/images/marker.png",
         id: item.id,
         latitude: item.latitude,
         longitude: item.longitude,
-        width: 40,
-        height: 40
+        briefAddr: item.briefAddr,
+        name: item.name
       })
     });
     //赋值
@@ -43,6 +50,8 @@ Page({
       markers: result,
       latitude: latitude,
       longitude: longitude,
+      briefAddr: briefAddr,
+      name: name
     });
     //初始化路径规划
     that.doWalkingRoute(destination);
@@ -53,6 +62,10 @@ Page({
     //查询marker的详细信息
     var marker = that.getMarkerById(obj.markerId);
     that.doWalkingRoute(marker.longitude + "," + marker.latitude);
+    that.setData({
+      briefAddr: marker.briefAddr,
+      name: marker.name
+    });
   },
   //进行路径规划
   doWalkingRoute: function (destination) {
@@ -130,8 +143,18 @@ Page({
       origin: that.data.origin,
       destination: that.data.destination,
     }
-    wx.navigateTo({
-      url: '../location-detail/location?param=' + JSON.stringify(param)
-    })
+    //设置点击图片效果
+    that.setData({
+      navigateImag: "../../images/ios7-navigate-click.png"
+    });
+    //修改点击状态
+    setTimeout(function () {
+      that.setData({
+        navigateImag: "../../images/ios7-navigate.png"
+      });
+      wx.navigateTo({
+        url: '../location-detail/location?param=' + JSON.stringify(param)
+      })
+    }, 200);
   }
 })

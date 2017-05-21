@@ -4,4 +4,5 @@
 
 .scroll {
   margin-top: -1rpx;
+  height: calc(100vh);
 }

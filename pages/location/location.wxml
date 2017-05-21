@@ -9,8 +9,12 @@
       show-location>
   </map>
   <view class="descript">
-    <view class="text">步行距离: {{distance}}</view>
-    <view class="text">步行时间: {{cost}}</view>
-    <view class="detail_button" bindtouchstart="goDetail">详情</view>
+    <view class="left">
+      <view class="name">{{name}}</view>
+      <view class="brief-addr">{{briefAddr}}</view>
+    </view>
+    <view class="right">
+      <image class="navigate" src="{{navigateImag}}" mode="aspectFit" bindtap="goDetail"></image>
+    </view>
   </view>
 </view>

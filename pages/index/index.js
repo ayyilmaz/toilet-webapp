@@ -122,8 +122,10 @@ Page({
       latitude: that.data.latitude,
       longitude: that.data.longitude,
       list: that.data.list,
-      //目的地点
-      destination: toilet.longitude + "," + toilet.latitude
+      //目的地点 基本的信息
+      destination: toilet.longitude + "," + toilet.latitude,
+      briefAddr: toilet.briefAddr,
+      name: toilet.name
     }
     wx.navigateTo({
       url: '../location/location?param=' + JSON.stringify(param)
@@ -166,7 +168,9 @@ Page({
       longitude: that.data.longitude,
       list: that.data.list,
       //目的地点，默认获取最近一个点
-      destination: that.data.list[0]["longitude"] + "," + that.data.list[0]["latitude"]
+      destination: that.data.list[0]["longitude"] + "," + that.data.list[0]["latitude"],
+      briefAddr: that.data.list[0]["briefAddr"],
+      name: that.data.list[0]["name"]
     }
     wx.navigateTo({
       url: '../location/location?param=' + JSON.stringify(param)
@@ -174,6 +178,8 @@ Page({
   },
   // 关于按钮
   doAbout: function () {
-
+    wx.navigateTo({
+      url: '../about/about'
+    })
   }
 })

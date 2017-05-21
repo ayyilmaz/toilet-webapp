@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/location/location",
     "pages/location-detail/location",
-    "pages/setting/setting"
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
