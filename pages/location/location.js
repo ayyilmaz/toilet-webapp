@@ -15,7 +15,7 @@ Page({
     origin: null,
     destination: null,
     briefAddr: null,
-    name: null,
+    toiletName: null,
     navigateImag: "../../images/ios7-navigate.png"
   },
   //页面加载事件
@@ -30,7 +30,7 @@ Page({
       longitude = param.longitude,
       destination = param.destination,
       briefAddr = param.briefAddr,
-      name = param.name;
+      toiletName = param.name;
     var result = [];
     //数据组装
     list.forEach(function (item) {
@@ -42,7 +42,7 @@ Page({
         latitude: item.latitude,
         longitude: item.longitude,
         briefAddr: item.briefAddr,
-        name: item.name
+        toiletName: item.name
       })
     });
     //赋值
@@ -51,7 +51,7 @@ Page({
       latitude: latitude,
       longitude: longitude,
       briefAddr: briefAddr,
-      name: name
+      toiletName: toiletName
     });
     //初始化路径规划
     that.doWalkingRoute(destination);
@@ -64,7 +64,7 @@ Page({
     that.doWalkingRoute(marker.longitude + "," + marker.latitude);
     that.setData({
       briefAddr: marker.briefAddr,
-      name: marker.name
+      toiletName: marker.name
     });
   },
   //进行路径规划

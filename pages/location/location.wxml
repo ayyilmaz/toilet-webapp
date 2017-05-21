@@ -10,7 +10,7 @@
   </map>
   <view class="descript">
     <view class="left">
-      <view class="name">{{name}}</view>
+      <view class="name">{{toiletName}}</view>
       <view class="brief-addr">{{briefAddr}}</view>
     </view>
     <view class="right">

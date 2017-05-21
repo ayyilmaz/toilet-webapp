@@ -49,6 +49,7 @@ map {
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-top:15rpx;
 }
 
 .descript .left .brief-addr {
