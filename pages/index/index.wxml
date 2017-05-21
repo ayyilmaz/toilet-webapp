@@ -22,7 +22,7 @@
 
   <!--底部说明信息-->
   <view class="zan-panel bottom-desc" wx:if="{{size > 0}}">
-    <view class="zan-cell__bd">点击查询结果之后将会打开微信内置地图界面</view>
+    <view class="zan-cell__bd">点击查询结果之后将会进行路径规划</view>
   </view>
 
   <!--查无结果处理界面-->

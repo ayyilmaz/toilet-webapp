@@ -2,8 +2,11 @@
   "pages": [
     "pages/index/index",
     "pages/location/location",
+    "pages/about/about",
     "pages/location-detail/location",
-    "pages/about/about"
+    "pages/author/author",
+    "pages/function/function",
+    "pages/help/help"
   ],
   "window": {
     "backgroundTextStyle": "light",

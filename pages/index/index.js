@@ -179,7 +179,7 @@ Page({
   // 关于按钮
   doAbout: function () {
     wx.navigateTo({
-      url: '../about/about'
+      url: '../author/author'
     })
   }
 })
