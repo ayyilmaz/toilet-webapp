@@ -6,6 +6,7 @@
 }
 
 /*.logo*/
+
 .logo {
   width: 200rpx;
   height: 200rpx;
@@ -13,9 +14,16 @@
 }
 
 /*版本信息*/
+
 .version {
-  font-size: 25rpx;
+  font-size: 30rpx;
+  margin-top: 10rpx;
+}
+
+.title {
   margin-bottom: 80rpx;
+  font-size: 30rpx;
+  margin-top: 20rpx;
 }
 
 .zan-cell__bd {
@@ -26,11 +34,11 @@
   background-color: #f9f9f9;
 }
 
-.zan-cell__bd{
+.zan-cell__bd {
   font-weight: bold;
 }
 
-.zan-cell__ft{
+.zan-cell__ft {
   font-size: 26rpx;
   text-align: left;
 }

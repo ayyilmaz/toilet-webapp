@@ -33,17 +33,40 @@ Page({
       toiletName = param.name;
     var result = [];
     //数据组装
-    list.forEach(function (item) {
-      result.push({
-        width: 40,
-        height: 40,
-        iconPath: "/images/marker.png",
-        id: item.id,
-        latitude: item.latitude,
-        longitude: item.longitude,
-        briefAddr: item.briefAddr,
-        toiletName: item.name
-      })
+    list.forEach(function (item, index) {
+      //为零时显示最近的气泡
+      if (!index) {
+        result.push({
+          width: 40,
+          height: 40,
+          iconPath: "/images/marker.png",
+          id: item.id,
+          latitude: item.latitude,
+          longitude: item.longitude,
+          briefAddr: item.briefAddr,
+          toiletName: item.name,
+          callout: {
+            content: "离你最近",
+            color: "#b5b1b1",
+            fontSize: 12,
+            borderRadius: 15,
+            bgColor: "#262930",
+            padding: 10,
+            display: 'ALWAYS'
+          }
+        })
+      } else {
+        result.push({
+          width: 40,
+          height: 40,
+          iconPath: "/images/marker.png",
+          id: item.id,
+          latitude: item.latitude,
+          longitude: item.longitude,
+          briefAddr: item.briefAddr,
+          toiletName: item.name
+        })
+      }
     });
     //赋值
     that.setData({
@@ -55,6 +78,7 @@ Page({
     });
     //初始化路径规划
     that.doWalkingRoute(destination);
+    //TODO 设置控件定位或者复位控件，计算位置的时候需要使用系统方法，获取屏幕宽度来进行设置
   },
   //点击marker事件
   doMarkertap: function (obj) {
@@ -64,7 +88,7 @@ Page({
     that.doWalkingRoute(marker.longitude + "," + marker.latitude);
     that.setData({
       briefAddr: marker.briefAddr,
-      toiletName: marker.name
+      toiletName: marker.toiletName
     });
   },
   //进行路径规划

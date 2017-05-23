@@ -54,7 +54,7 @@ map {
 
 .descript .left .brief-addr {
   height: 90rpx;
-  font-size: 34rpx;
+  font-size: 30rpx;
   display: flex;
   align-items: center;
 }
