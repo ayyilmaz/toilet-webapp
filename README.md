@@ -1,7 +1,7 @@
 ## 微信小程序找厕所（小明带你找厕所）
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) ![](https://jaywcjlove.github.io/sb/lang/chinese.svg)
 
-先不废话，直接扫描体验
+直接扫描体验
 
 <img src="./readme/v1.0/bar_code.jpg" width = "200" height = "200" alt="图片名称" align=center />
 
