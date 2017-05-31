@@ -3,14 +3,14 @@
 
 先不废话，直接扫描体验
 
-<img src="./readme/bar_code.jpg" width = "200" height = "200" alt="图片名称" align=center />
+<img src="./readme/v1.0/bar_code.jpg" width = "200" height = "200" alt="图片名称" align=center />
 
 ## 预览
-<img src="./readme/android_1.jpeg" width = "260" height = "450" style="margin-right:10px;" alt="图片名称" align=center/><img src="./readme/android_2.jpeg" style="margin-right:10px;" width = "260" height = "450" alt="图片名称" align=center/><img src="./readme/ios_1.jpeg" style="margin-right:10px;" width = "260" height = "450" alt="图片名称" align=center/><img src="./readme/ios_2.jpeg" style="margin-right:10px;" width = "260" height = "450" alt="图片名称" align=center/><img src="./readme/ios_3.jpeg" width = "260" style="margin-right:10px;" height = "450" alt="图片名称" align=center/>
+<img src="./readme/v2.0/1.PNG" width = "260" height = "450" style="margin-right:10px;" alt="图片名称" align=center/><img src="./readme/v2.0/2.PNG" style="margin-right:10px;" width = "260" height = "450" alt="图片名称" align=center/><img src="./readme/v2.0/3.PNG" style="margin-right:10px;" width = "260" height = "450" alt="图片名称" align=center/><img src="./readme/v2.0/4.PNG" style="margin-right:10px;" width = "260" height = "450" alt="图片名称" align=center/>
 
 ## 1 需求梳理
 ### 1.1 前言
-在去年的时候、已经使用react-native开发过找厕所APP <https://github.com/liumingmusic/react-native-full-example>，在这里也要感谢vczero的react-native相关课程和书籍的支持，才完成APP开发。今天年初微信发布了小程序，以简约方便体验走进了人们的视线，作为一款功能简单，使用频率低的APP是一种很大的冲击，虽然现在小程序以功能的不健全，不像刚刚发布时那么火，但是它的无需下载、无需安装，体验方便也是一种优势，所以对于之前开发的找厕所APP，打算开发出一款对应功能的小程序，方便以后生活使用。
+v1.0虽然已经满足实际需求，但是在ios和android两个平台显示的效果还是不尽相同，特别是地图上面路径规划功能。为此V2.0主要使用小程序自带的地图组件功能完善周围厕所撒点功能、点击marker功能、详细文字描述路径规划功能、以及小程序作者详细介绍
 
 ### 1.2 功能需求
 **V1.0 版本**
@@ -22,13 +22,13 @@
 - [x] 显示列表进行点直接打开微信自带地图，可以根据选择是否显示路线和打开本地地图APP进行导航
 
 **V2.0 版本**
-- [ ] 可以在地图上面展示所有厕所的位置，并且标记
-- [ ] 直接在小程序端进行路径规划，ios和android一样
-- [ ] 默认选择步行方式
-- [ ] 制作关于界面
+- [x] 可以在地图上面展示所有厕所的位置，并且标记
+- [x] 直接在小程序端进行路径规划，ios和android一样
+- [x] 默认选择步行方式
+- [x] 制作关于界面
 
 ## 2 设计阶段
-![设计流程图](./readme/flow_chart.png) 
+![设计流程图](./readme/v1.0/flow_chart.png) 
 
 ## 3 开发前环境搭建
 ### 3.1 小程序编辑器下载
@@ -37,12 +37,12 @@
 ### 3.2 创建项目、快速开发
 打开开发工具，填写相关的信息，建议勾选上quick start，他将会生成基本的页面模板。
 <div  align="center">   
-<img src="./readme/quick-start.png" width = "300" height = "280" alt="图片名称" align=center />
+<img src="./readme/v1.0/quick-start.png" width = "300" height = "280" alt="图片名称" align=center />
 </div>
 
 之后创建项目，就会生成基本的页面模板
 <div  align="center">   
-<img src="./readme/quick-page.png" width = "300" height = "400" alt="图片名称" align=center />
+<img src="./readme/v1.0/quick-page.png" width = "300" height = "400" alt="图片名称" align=center />
 </div>
 
 ## 4 项目结构组织
@@ -59,11 +59,16 @@
 │   │   ├── location.json                            
 │   │   ├── location.wxml                          
 │   │   └── location.wxss 
-│   ├── about                           //小程序关于界面
-│   │   ├── about.js                              
-│   │   ├── about.json                            
-│   │   ├── about.wxml                          
-│   │   └── about.wxss                          
+│   ├── location-detail                 //详细的文字路径描述
+│   │   ├── location.js                              
+│   │   ├── location.json                            
+│   │   ├── location.wxml                          
+│   │   └── location.wxss  
+│   ├── author                           //小程序关于界面
+│   │   ├── author.js                              
+│   │   ├── author.json                            
+│   │   ├── author.wxml                          
+│   │   └── author.wxss                          
 ├── readme                              //编写readme需要的相关资源图片          
 ├── resource                            //第三方资源包
 │   ├── lib        
@@ -80,7 +85,7 @@
 ## 6 预览、上传、审核
 在编辑器左边的项目按钮，可以对正在开发的项目进行预览，这样就可以边开发边调试。
 <div  align="center">   
-<img src="./readme/test.png" width = "500" height = "400" alt="图片名称" align=center />
+<img src="./readme/v1.0/test.png" width = "500" height = "400" alt="图片名称" align=center />
 </div>
 
 之后开发完成可以进行上传，在小程序开发管理界面可以选择刚提交上来的项目作为体验版本，先让周围的朋友进体验下测试。注意，选了体验版本之后还需要在用户身份界面绑定体验者(可以绑定十个体验者)。如果在体验的过程发现bug，还可以进行修改，毕竟还没有上线。
@@ -96,4 +101,4 @@
 ## 项目打赏
 需要联合开发小伙伴也可以发邮件给我说，还有如果您觉得我的案例能帮助到您，您可以打赏作者一瓶汽水 
 
-<img src="./readme/FullSizeRender.jpg" width = "190" height = "200" alt="图片名称" align=center />
+<img src="./readme/v1.0/FullSizeRender.jpg" width = "190" height = "200" alt="图片名称" align=center />
