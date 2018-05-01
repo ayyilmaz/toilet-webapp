@@ -58,6 +58,8 @@ Page({
             that.setList(data);
             //关闭loading
             wx.hideLoading();
+            //震动提示
+            wx.vibrateLong();
           },
           fail: function () {
             //关闭loading
@@ -127,9 +129,33 @@ Page({
       briefAddr: toilet.briefAddr,
       name: toilet.name
     }
-    wx.navigateTo({
-      url: '../location/location?param=' + JSON.stringify(param)
-    })
+    //让用户选择是使用本地自带地图还是小程序地图导航
+    wx.showActionSheet({
+      itemList: ['高德/百度地图导航', '本地小程序导航'],
+      success: function (res) {
+        if (res.tapIndex){
+          wx.navigateTo({
+            url: '../location/location?param=' + JSON.stringify(param)
+          });
+        }else{
+          //打开本地应用进行导航
+          wx.openLocation({
+            latitude: param.latitude,
+            longitude: param.longitude,
+            name: param.name,
+            address: param.briefAddr,
+            scale: 28
+          });
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '你可以选择一个看看效果,行不行再说',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
   },
   //根据marker唯一id查询信息
   findMarkerById: function (id) {
@@ -172,9 +198,33 @@ Page({
       briefAddr: that.data.list[0]["briefAddr"],
       name: that.data.list[0]["name"]
     }
-    wx.navigateTo({
-      url: '../location/location?param=' + JSON.stringify(param)
-    })
+    //让用户选择是使用本地自带地图还是小程序地图导航
+    wx.showActionSheet({
+      itemList: ['高德/百度地图导航', '本地小程序导航'],
+      success: function (res) {
+        if (res.tapIndex) {
+          wx.navigateTo({
+            url: '../location/location?param=' + JSON.stringify(param)
+          });
+        } else {
+          //打开本地应用进行导航
+          wx.openLocation({
+            latitude: param.latitude,
+            longitude: param.longitude,
+            name: param.name,
+            address: param.briefAddr,
+            scale: 28
+          });
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '你可以选择一个看看效果,行不行再说',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
   },
   // 关于按钮
   doAbout: function () {
