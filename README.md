@@ -1,3 +1,6 @@
+
+[GitHub地址](https://github.com/liumingmusic/toilet-webapp)
+
 ## 微信小程序找厕所（小明带你找厕所）
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard) ![](https://jaywcjlove.github.io/sb/lang/chinese.svg)
 
