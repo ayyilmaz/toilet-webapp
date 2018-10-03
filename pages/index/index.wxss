@@ -2,7 +2,6 @@
 
 .top-view{
   height: 50%;
-
 }
 
 /*地图样式控制*/
@@ -19,8 +18,9 @@ map {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 1000;
+  z-index: 2000;
   width: 100%;
+  background-color: red;
 }
 
 .zan-panel {
@@ -84,7 +84,7 @@ map {
 /*页面底部说明信息*/
 
 .bottom-desc {
-  margin-top: 60rpx;
+  margin-top: 100rpx;
   margin-bottom: 100rpx;
   height: 60rpx;
   font-size: 24rpx;
@@ -178,3 +178,41 @@ map {
   widows: 128rpx;
   margin-top: 100rpx;
 }
+
+.button-bar{
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  background-color: #f9f9f9;
+}
+
+.button-bar .button{
+  display: flex;
+  flex-direction: column; 
+  height: 100%;
+  width: 50%;
+  text-align: center;
+}
+
+.button-img{
+  margin-top: 10rpx;
+  width: 55rpx;
+  height: 55rpx;
+}
+
+.button-text{
+  font-size: 24rpx;
+  height: 20rpx;
+}
+
+.button-text-click{
+  font-size: 24rpx;
+  height: 20rpx;
+  color: #1296db;
+}
+

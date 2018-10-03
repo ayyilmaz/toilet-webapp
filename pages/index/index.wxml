@@ -4,7 +4,7 @@
     <map id="map" 
         longitude="{{longitude}}" 
         latitude="{{latitude}}" 
-        scale="15" 
+        scale="18" 
         markers="{{markers}}"
         bindmarkertap="doMarkertap"
         show-location>
@@ -14,7 +14,6 @@
       <view class="zan-cell s-height">
         <view class="zan-cell__bd" wx:if="{{parkingAndToiletFlag}}">为你推荐附近的{{size}}个公共厕所</view>
         <view class="zan-cell__bd" wx:if="{{!parkingAndToiletFlag}}">为你推荐附近的{{size}}个停车场</view>
-        <button class="zan-btn zan-btn--mini zan-btn--plain" bindtap="navToSetting"></button>
       </view>
     </view>
   </view>
@@ -66,9 +65,13 @@
   </view>
 </view>
 
-<!--刷新、定位按钮按钮-->
-<view class="handle" wx:if="{{onLine && yesAuth}}">
-  <image wx:if="{{parkingAndToiletFlag}}" class="location" src="../../images/parking-icon.png" mode="aspectFit" bindtap="doParkingAndToilet"></image>
-  <image wx:if="{{!parkingAndToiletFlag}}" class="location" src="../../images/toilet-icon.png" mode="aspectFit" bindtap="doParkingAndToilet"></image>
-  <image class="refresh" src="../../images/refresh.png" mode="aspectFit" bindtap="doRefresh"></image>
+<view class="button-bar">
+  <view class="button left">
+    <view><image src="../../images/{{button_text_style ? 'toilet-click.png' : 'toilet-no-click.png'}}" class="button-img" mode="aspectFit" bindtap="doToilet"></image></view>
+    <view class="{{button_text_style ? 'button-text-click' : 'button-text'}}">厕所</view>
+  </view>
+  <view class="button right">
+    <view><image src="../../images/{{button_text_style ? 'parking-no-click.png' : 'parking-click.png'}}" class="button-img" mode="aspectFit" bindtap="doParking"></image></view>
+    <view class="{{button_text_style ? 'button-text' : 'button-text-click'}}">停车场</view>
+  </view>
 </view>

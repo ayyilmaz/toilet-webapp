@@ -16,7 +16,8 @@ Page({
     onLine: true,
     noAuth: false,
     yesAuth: true,
-    parkingAndToiletFlag: true //默认是厕所
+    parkingAndToiletFlag: true, //默认是厕所
+    button_text_style: 'button-text'
   },
   // 页面加载
   onLoad: function() {
@@ -216,9 +217,9 @@ Page({
       //为零时显示最近的气泡
       if (!index) {
         result.push({
-          width: 36,
-          height: 36,
-          iconPath: that.data.parkingAndToiletFlag ?  "/images/toilet-icon.png" : "/images/parking-icon.png",
+          width: 25,
+          height: 25,
+          iconPath: "/images/marker.png",
           id: item.id,
           latitude: item.latitude,
           longitude: item.longitude,
@@ -236,9 +237,9 @@ Page({
         })
       } else {
         result.push({
-          width: 36,
-          height: 36,
-          iconPath: that.data.parkingAndToiletFlag ? "/images/toilet-icon.png" : "/images/parking-icon.png",
+          width: 25,
+          height: 25,
+          iconPath: "/images/marker.png",
           id: item.id,
           latitude: item.latitude,
           longitude: item.longitude,
@@ -268,4 +269,30 @@ Page({
     }
     return result;
   },
+  doToilet: function() {
+    var that = this;
+    that.setData({
+      button_text_style: true
+    });
+    that.setData({
+      parkingAndToiletFlag: true
+    });
+    wx.showLoading({
+      title: "数据更新中,别急!"
+    });
+    this.getData();
+  },
+  doParking: function () {
+    var that = this;
+    that.setData({
+      button_text_style: false
+    });
+    that.setData({
+      parkingAndToiletFlag: false
+    });
+    wx.showLoading({
+      title: "数据更新中,别急!"
+    });
+    this.getData();
+  }
 })
