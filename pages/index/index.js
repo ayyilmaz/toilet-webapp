@@ -65,8 +65,6 @@ Page({
             that.doMapData(that.data.list);
             //关闭loading
             wx.hideLoading();
-            //震动提示
-            wx.vibrateLong();
           },
           fail: function() {
             //关闭loading
