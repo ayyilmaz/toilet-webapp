@@ -66,12 +66,12 @@
 </view>
 
 <view class="button-bar">
-  <view class="button left">
-    <view><image src="../../images/{{button_text_style ? 'toilet-click.png' : 'toilet-no-click.png'}}" class="button-img" mode="aspectFit" bindtap="doToilet"></image></view>
+  <view class="button left" bindtap="doToilet">
+    <view><image src="../../images/{{button_text_style ? 'toilet-click.png' : 'toilet-no-click.png'}}" class="button-img" mode="aspectFit" ></image></view>
     <view class="{{button_text_style ? 'button-text-click' : 'button-text'}}">厕所</view>
   </view>
-  <view class="button right">
-    <view><image src="../../images/{{button_text_style ? 'parking-no-click.png' : 'parking-click.png'}}" class="button-img" mode="aspectFit" bindtap="doParking"></image></view>
+  <view class="button right" bindtap="doParking">
+    <view><image src="../../images/{{button_text_style ? 'parking-no-click.png' : 'parking-click.png'}}" class="button-img" mode="aspectFit" ></image></view>
     <view class="{{button_text_style ? 'button-text' : 'button-text-click'}}">停车场</view>
   </view>
 </view>
