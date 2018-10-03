@@ -35,7 +35,7 @@ Page({
       success: function (res) {
         var latitude = res.latitude
         var longitude = res.longitude
-        console.log(res.accuracy);
+        //console.log(res.accuracy);
         //设置经纬度值
         that.setData({
           latitude: latitude,
