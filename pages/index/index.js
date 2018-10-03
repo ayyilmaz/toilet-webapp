@@ -12,7 +12,8 @@ Page({
     size: 0,
     onLine: true,
     noAuth: false,
-    yesAuth: true
+    yesAuth: true,
+    parkingAndToiletFlag: true //默认是厕所
   },
   // 页面加载
   onLoad: function () {
@@ -43,7 +44,7 @@ Page({
         });
         //源码里面查询的是附近一公里的哦
         qqmapsdk.search({
-          keyword: '厕所',
+          keyword: that.data.parkingAndToiletFlag ? '厕所' : '停车场',
           location: {
             latitude: latitude,
             longitude: longitude
@@ -129,32 +130,13 @@ Page({
       briefAddr: toilet.briefAddr,
       name: toilet.name
     }
-    //让用户选择是使用本地自带地图还是小程序地图导航
-    wx.showActionSheet({
-      itemList: ['高德/百度地图导航', '本地小程序导航'],
-      success: function (res) {
-        if (res.tapIndex){
-          wx.navigateTo({
-            url: '../location/location?param=' + JSON.stringify(param)
-          });
-        }else{
-          //打开本地应用进行导航
-          wx.openLocation({
-            latitude: param.latitude,
-            longitude: param.longitude,
-            name: param.name,
-            address: param.briefAddr,
-            scale: 28
-          });
-        }
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '你可以选择一个看看效果,行不行再说',
-          icon: 'none',
-          duration: 2000
-        })
-      }
+    //打开本地应用进行导航
+    wx.openLocation({
+      latitude: param.latitude,
+      longitude: param.longitude,
+      name: param.name,
+      address: param.briefAddr,
+      scale: 28
     });
   },
   //根据marker唯一id查询信息
@@ -185,51 +167,20 @@ Page({
       }
     })
   },
-  // 跳转到地图显示信息界面
-  doNavToLocation: function () {
+  // 选择是否查询什么
+  doParkingAndToilet: function () {
     var that = this;
-    //跳转传输的值
-    var param = {
-      latitude: that.data.latitude,
-      longitude: that.data.longitude,
-      list: that.data.list,
-      //目的地点，默认获取最近一个点
-      destination: that.data.list[0]["longitude"] + "," + that.data.list[0]["latitude"],
-      briefAddr: that.data.list[0]["briefAddr"],
-      name: that.data.list[0]["name"]
-    }
-    //让用户选择是使用本地自带地图还是小程序地图导航
-    wx.showActionSheet({
-      itemList: ['高德/百度地图导航', '本地小程序导航'],
-      success: function (res) {
-        if (res.tapIndex) {
-          wx.navigateTo({
-            url: '../location/location?param=' + JSON.stringify(param)
-          });
-        } else {
-          //打开本地应用进行导航
-          wx.openLocation({
-            latitude: param.latitude,
-            longitude: param.longitude,
-            name: param.name,
-            address: param.briefAddr,
-            scale: 28
-          });
-        }
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '你可以选择一个看看效果,行不行再说',
-          icon: 'none',
-          duration: 2000
-        })
-      }
+    that.setData({
+      parkingAndToiletFlag: !that.data.parkingAndToiletFlag
     });
+    wx.showLoading({ title: "数据更新中,别急!" });
+    this.getData();
   },
   // 关于按钮
   doAbout: function () {
     wx.navigateTo({
-      url: '../author/author'
+      //url: '../author/author'
+      url:'../function/function'
     })
   }
 })

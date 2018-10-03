@@ -2,7 +2,8 @@
   <!--顶部基本信息-->
   <view class="zan-panel" wx:if="{{size > 0}}">
     <view class="zan-cell s-height">
-      <view class="zan-cell__bd">为你推荐附近的{{size}}个公共厕所</view>
+      <view class="zan-cell__bd" wx:if="{{parkingAndToiletFlag}}">为你推荐附近的{{size}}个公共厕所</view>
+      <view class="zan-cell__bd" wx:if="{{!parkingAndToiletFlag}}">为你推荐附近的{{size}}个停车场</view>
       <button class="zan-btn zan-btn--mini zan-btn--plain" bindtap="navToSetting"></button>
     </view>
   </view>
@@ -59,7 +60,7 @@
 
 <!--刷新、定位按钮按钮-->
 <view class="handle" wx:if="{{onLine && yesAuth}}">
-  <image class="location" src="../../images/location.png" mode="aspectFit" bindtap="doNavToLocation"></image>
+  <image wx:if="{{parkingAndToiletFlag}}" class="location" src="../../images/parking-icon.png" mode="aspectFit" bindtap="doParkingAndToilet"></image>
+  <image wx:if="{{!parkingAndToiletFlag}}" class="location" src="../../images/toilet-icon.png" mode="aspectFit" bindtap="doParkingAndToilet"></image>
   <image class="refresh" src="../../images/refresh.png" mode="aspectFit" bindtap="doRefresh"></image>
-  <image class="about" src="../../images/about.png" mode="aspectFit" bindtap="doAbout"></image>
 </view>

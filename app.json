@@ -2,16 +2,13 @@
   "pages": [
     "pages/index/index",
     "pages/location/location",
-    "pages/about/about",
     "pages/location-detail/location",
-    "pages/author/author",
-    "pages/function/function",
-    "pages/help/help"
+    "pages/author/author"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#262930",
-    "navigationBarTitleText": "小明带你找厕所",
+    "navigationBarTitleText": "停车方便",
     "navigationBarTextStyle": "#fff",
     "enablePullDownRefresh": true
   }
