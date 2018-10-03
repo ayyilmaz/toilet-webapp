@@ -5,6 +5,9 @@ var qqmapsdk;
 var app = getApp()
 Page({
   data: {
+    markers: [],
+    briefAddr: null,
+    toiletName: null,
     list: [],
     latitude: 0,
     longitude: 0,
@@ -16,15 +19,17 @@ Page({
     parkingAndToiletFlag: true //默认是厕所
   },
   // 页面加载
-  onLoad: function () {
-    wx.showLoading({ title: "获取数据中,别急!" });
+  onLoad: function() {
+    wx.showLoading({
+      title: "获取数据中,别急!"
+    });
   },
   // 页面显示
   onShow() {
     this.getData();
   },
   //获取数据
-  getData: function () {
+  getData: function() {
     var that = this;
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
@@ -33,10 +38,9 @@ Page({
     //确保人员再次移动进行定位，获取经纬度
     wx.getLocation({
       type: 'gcj02',
-      success: function (res) {
+      success: function(res) {
         var latitude = res.latitude
         var longitude = res.longitude
-        //console.log(res.accuracy);
         //设置经纬度值
         that.setData({
           latitude: latitude,
@@ -49,7 +53,7 @@ Page({
             latitude: latitude,
             longitude: longitude
           },
-          success: function (res) {
+          success: function(res) {
             //有可能是参数有问题或者是网络
             that.setData({
               onLine: true
@@ -57,12 +61,13 @@ Page({
             //根据返回的结果marker在地图上面
             var data = res.data;
             that.setList(data);
+            that.doMapData(that.data.list);
             //关闭loading
             wx.hideLoading();
             //震动提示
             wx.vibrateLong();
           },
-          fail: function () {
+          fail: function() {
             //关闭loading
             wx.hideLoading();
             //有可能是参数有问题或者是网络
@@ -74,7 +79,7 @@ Page({
           }
         });
       },
-      fail: function (json) {
+      fail: function(json) {
         //关闭loading
         wx.hideLoading();
         //没有权限
@@ -86,11 +91,11 @@ Page({
     });
   },
   //组装数据信息
-  setList: function (data) {
+  setList: function(data) {
     var that = this;
     var result = [];
     //循环遍历数据， 其实不做这一步也行
-    data.forEach(function (item, index) {
+    data.forEach(function(item, index) {
       //替换一些不必要的大信息
       var reg = new RegExp(item.ad_info.province + item.ad_info.city + item.ad_info.district);
       var briefAddr = item.address.replace(reg, "");
@@ -115,7 +120,7 @@ Page({
     });
   },
   //点击列表显示本地导航信息
-  tapItem: function (e) {
+  tapItem: function(e) {
     var that = this;
     var id = e.currentTarget.dataset.id;
     var toilet = that.findMarkerById(id);
@@ -139,8 +144,23 @@ Page({
       scale: 28
     });
   },
+  //点击地图上面进行显示
+  doMarkertap: function (obj) {
+    var that = this;
+    //查询marker的详细信息
+    var marker = that.getMarkerById(obj.markerId);
+    console.log(marker);
+    //打开本地应用进行导航
+    wx.openLocation({
+      latitude: marker.latitude,
+      longitude: marker.longitude,
+      name: marker.toiletName,
+      address: marker.briefAddr,
+      scale: 28
+    });
+  },
   //根据marker唯一id查询信息
-  findMarkerById: function (id) {
+  findMarkerById: function(id) {
     var that = this,
       result = {};
     var list = that.data.list;
@@ -154,12 +174,14 @@ Page({
     return result;
   },
   // 数据更新
-  doRefresh: function () {
-    wx.showLoading({ title: "数据更新中,别急!" });
+  doRefresh: function() {
+    wx.showLoading({
+      title: "数据更新中,别急!"
+    });
     this.getData();
   },
   //再次获取权限
-  doAuth: function () {
+  doAuth: function() {
     var that = this;
     wx.openSetting({
       success: (res) => {
@@ -168,19 +190,82 @@ Page({
     })
   },
   // 选择是否查询什么
-  doParkingAndToilet: function () {
+  doParkingAndToilet: function() {
     var that = this;
     that.setData({
       parkingAndToiletFlag: !that.data.parkingAndToiletFlag
     });
-    wx.showLoading({ title: "数据更新中,别急!" });
+    wx.showLoading({
+      title: "数据更新中,别急!"
+    });
     this.getData();
   },
   // 关于按钮
-  doAbout: function () {
+  doAbout: function() {
     wx.navigateTo({
       //url: '../author/author'
-      url:'../function/function'
+      url: '../function/function'
     })
-  }
+  },
+  //组装地图上的数据
+  doMapData: function(list) {
+    var that = this;
+    var result = [];
+    //数据组装
+    list.forEach(function(item, index) {
+      //为零时显示最近的气泡
+      if (!index) {
+        result.push({
+          width: 36,
+          height: 36,
+          iconPath: that.data.parkingAndToiletFlag ?  "/images/toilet-icon.png" : "/images/parking-icon.png",
+          id: item.id,
+          latitude: item.latitude,
+          longitude: item.longitude,
+          briefAddr: item.briefAddr,
+          toiletName: item.name,
+          callout: {
+            content: "离你最近",
+            color: "#b5b1b1",
+            fontSize: 12,
+            borderRadius: 15,
+            bgColor: "#262930",
+            padding: 10,
+            display: 'ALWAYS'
+          }
+        })
+      } else {
+        result.push({
+          width: 36,
+          height: 36,
+          iconPath: that.data.parkingAndToiletFlag ? "/images/toilet-icon.png" : "/images/parking-icon.png",
+          id: item.id,
+          latitude: item.latitude,
+          longitude: item.longitude,
+          briefAddr: item.briefAddr,
+          toiletName: item.name
+        })
+      }
+    });
+    //赋值
+    that.setData({
+      markers: result,
+      latitude: that.data.latitude,
+      longitude: that.data.longitude
+    });
+  },
+  //根据marker的id获取详情信息
+  getMarkerById: function (id) {
+    var that = this;
+    var markers = that.data.markers;
+    var len = markers.length;
+    var result;
+    for (var i = 0; i < len; i++) {
+      if (markers[i]["id"] === id) {
+        result = markers[i];
+        break;
+      }
+    }
+    return result;
+  },
 })

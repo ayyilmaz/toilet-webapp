@@ -71,10 +71,6 @@ Page({
     //赋值
     that.setData({
       markers: result,
-      latitude: latitude,
-      longitude: longitude,
-      briefAddr: briefAddr,
-      toiletName: toiletName
     });
     //初始化路径规划
     that.doWalkingRoute(destination);

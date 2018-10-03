@@ -1,5 +1,28 @@
 /*重置panle样式*/
 
+.top-view{
+  height: 50%;
+
+}
+
+/*地图样式控制*/
+map {
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.tip-msg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
 .zan-panel {
   margin-top: 0;
 }
@@ -32,7 +55,11 @@
 }
 
 .scroll {
-  margin-top: -1rpx;
+  top: 50%;
+  height: 50%;
+  position: fixed;
+  width: 100%;
+  left: 0;
 }
 
 /*点击之后的样式*/
@@ -59,6 +86,7 @@
 .bottom-desc {
   margin-top: 60rpx;
   margin-bottom: 100rpx;
+  height: 60rpx;
   font-size: 24rpx;
   padding: 0 100rpx;
   text-align: center;
