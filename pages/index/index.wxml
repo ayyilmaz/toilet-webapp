@@ -1,6 +1,13 @@
 <view class="container" wx:if="{{onLine && yesAuth}}">
   <!-- 小地图 -->
   <view class="top-view">
+    <!--顶部基本信息-->
+    <view class="zan-panel tip-msg" wx:if="{{size > 0}}">
+      <view class="zan-cell s-height">
+        <view class="zan-cell__bd" wx:if="{{parkingAndToiletFlag}}">为你推荐附近的{{size}}个公共厕所</view>
+        <view class="zan-cell__bd" wx:if="{{!parkingAndToiletFlag}}">为你推荐附近的{{size}}个停车场</view>
+      </view>
+    </view>
     <map id="map" 
         longitude="{{longitude}}" 
         latitude="{{latitude}}" 
@@ -9,13 +16,6 @@
         bindmarkertap="doMarkertap"
         show-location>
     </map>
-    <!--顶部基本信息-->
-    <view class="zan-panel tip-msg" wx:if="{{size > 0}}">
-      <view class="zan-cell s-height">
-        <view class="zan-cell__bd" wx:if="{{parkingAndToiletFlag}}">为你推荐附近的{{size}}个公共厕所</view>
-        <view class="zan-cell__bd" wx:if="{{!parkingAndToiletFlag}}">为你推荐附近的{{size}}个停车场</view>
-      </view>
-    </view>
   </view>
   <!--视图滚动区域-->
   <scroll-view class="scroll" scroll-y="true" wx:if="{{size > 0}}">

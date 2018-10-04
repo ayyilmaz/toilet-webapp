@@ -144,7 +144,7 @@ Page({
     });
   },
   //点击地图上面进行显示
-  doMarkertap: function (obj) {
+  doMarkertap: function(obj) {
     var that = this;
     //查询marker的详细信息
     var marker = that.getMarkerById(obj.markerId);
@@ -254,7 +254,7 @@ Page({
     });
   },
   //根据marker的id获取详情信息
-  getMarkerById: function (id) {
+  getMarkerById: function(id) {
     var that = this;
     var markers = that.data.markers;
     var len = markers.length;
@@ -280,7 +280,7 @@ Page({
     });
     this.getData();
   },
-  doParking: function () {
+  doParking: function() {
     var that = this;
     that.setData({
       button_text_style: false
@@ -292,5 +292,12 @@ Page({
       title: "数据更新中,别急!"
     });
     this.getData();
+  },
+  //分享功能
+  onShareAppMessage: function() {
+    return {
+      title: '带你停车方便',
+      path: '/page/index'
+    }
   }
 })

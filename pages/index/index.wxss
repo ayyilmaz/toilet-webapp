@@ -2,6 +2,7 @@
 
 .top-view{
   height: 50%;
+  width: 100%;
 }
 
 /*地图样式控制*/
@@ -11,14 +12,13 @@ map {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 1000;
+  z-index: 100;
 }
 
-.tip-msg {
-  position: fixed;
+.top-view .tip-msg {
   left: 0;
   top: 0;
-  z-index: 2000;
+  z-index: 200;
   width: 100%;
   background-color: red;
 }
