@@ -7,17 +7,18 @@
       <view class="zan-cell__bd">github</view>
       <view class="zan-cell__ft">https://github.com/liumingmusic</view>
     </view>
-    <view class="zan-cell" bindtap="doFunction">
+    <view class="zan-cell" bindtap="doUser">
       <view class="zan-cell__bd">blog</view>
-      <view class="zan-cell__ft">http://liumingmusic.coding.me</view>
+      <view class="zan-cell__ft">https://liumingmusic.cn</view>
     </view>
-    <view class="zan-cell" bindtap="doHelp">
+    <view class="zan-cell" bindtap="doBlog">
       <view class="zan-cell__bd">csdn</view>
       <view class="zan-cell__ft">http://blog.csdn.net/liumingm_music</view>
     </view>
-    <view class="zan-cell" bindtap="doHelp">
+    <view class="zan-cell" bindtap="doEmail">
       <view class="zan-cell__bd">email</view>
       <view class="zan-cell__ft">liuming_music@163.com</view>
     </view>
   </view>
+  <ad unit-id="adunit-df31d3d50fdb03e7" style="margin-top:20rpx;"></ad>
 </view>

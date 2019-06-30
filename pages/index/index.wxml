@@ -25,6 +25,9 @@
     <view class="zan-cell__bd">点击查询结果之后将会进行路径规划</view>
   </view>
 
+  <!-- 广告组件 -->
+  <ad unit-id="adunit-df31d3d50fdb03e7"></ad>
+
   <!--查无结果处理界面-->
   <view class="zan-panel no-data" wx:if="{{size == 0}}">
     <image src="../../images/Sorry.png" mode="aspectFit"></image>

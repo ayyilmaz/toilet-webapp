@@ -58,7 +58,7 @@
 
 .bottom-desc {
   margin-top: 60rpx;
-  margin-bottom: 100rpx;
+  margin-bottom: 60rpx;
   font-size: 24rpx;
   padding: 0 100rpx;
   text-align: center;

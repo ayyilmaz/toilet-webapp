@@ -129,7 +129,9 @@ Page({
       briefAddr: toilet.briefAddr,
       name: toilet.name
     }
+    //FIXME 不让用户选择，直接打开
     //让用户选择是使用本地自带地图还是小程序地图导航
+    /*
     wx.showActionSheet({
       itemList: ['高德/百度地图导航', '本地小程序导航'],
       success: function (res) {
@@ -155,6 +157,15 @@ Page({
           duration: 2000
         })
       }
+    });
+    */
+    //打开本地应用进行导航
+    wx.openLocation({
+      latitude: param.latitude,
+      longitude: param.longitude,
+      name: param.name,
+      address: param.briefAddr,
+      scale: 30
     });
   },
   //根据marker唯一id查询信息
@@ -198,7 +209,9 @@ Page({
       briefAddr: that.data.list[0]["briefAddr"],
       name: that.data.list[0]["name"]
     }
+    //FIXME 不让用户选择
     //让用户选择是使用本地自带地图还是小程序地图导航
+    /*
     wx.showActionSheet({
       itemList: ['高德/百度地图导航', '本地小程序导航'],
       success: function (res) {
@@ -225,11 +238,23 @@ Page({
         })
       }
     });
+    */
+    wx.openLocation({
+      latitude: param.latitude,
+      longitude: param.longitude,
+      name: param.name,
+      address: param.briefAddr,
+      scale: 28
+    });
   },
   // 关于按钮
   doAbout: function () {
     wx.navigateTo({
       url: '../author/author'
     })
+  },
+
+  onShareAppMessage:function(){
+
   }
 })
