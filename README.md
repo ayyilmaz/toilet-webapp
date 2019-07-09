@@ -1,3 +1,5 @@
+## 关注微信公众号，获取更多资源
+<img src="./images/it_cloud.png" width = "200" height = "200" alt="图片名称" align=center />
 
 [GitHub地址](https://github.com/liumingmusic/toilet-webapp)
 

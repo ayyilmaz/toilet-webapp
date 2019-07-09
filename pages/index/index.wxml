@@ -1,5 +1,3 @@
-<!-- 广告组件 -->
-<ad unit-id="adunit-df31d3d50fdb03e7"></ad>
 <view class="container" wx:if="{{onLine && yesAuth}}">
   <!--顶部基本信息-->
   <view class="zan-panel" wx:if="{{size > 0}}">
@@ -8,6 +6,8 @@
       <button class="zan-btn zan-btn--mini zan-btn--plain" bindtap="navToSetting"></button>
     </view>
   </view>
+  <!-- 广告组件 -->
+  <ad unit-id="adunit-df31d3d50fdb03e7"></ad>
   <!--视图滚动区域-->
   <scroll-view class="scroll" scroll-y="true" wx:if="{{size > 0}}">
     <view class="zan-panel">
